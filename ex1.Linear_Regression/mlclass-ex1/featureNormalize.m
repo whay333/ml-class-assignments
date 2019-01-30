@@ -26,29 +26,9 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %
 
-% mu
-for p = 1:size(X, 2)
-  mu(p) = mean(X(:, p), "a");
-end
-
-% sigma
-for p = 1:size(X, 2)
-  sigma(p) = std(X(:, p));
-end
-
-% X_norm
-for p = 1:size(X, 2)
-  if (sigma(p) != 0)
-    for i = 1:size(X, 1)
-      X_norm(i, p) = (X(i, p)-mu(p))/sigma(p);
-    end
-  else
-    % sigma(p) == 0 <=> forall i, j,  X(i, p) == X(j, p) == mu(p)
-    % In this case,  normalized values are all zero.
-    % (mean is 0,  standard deviation is sigma(=0))
-    X_norm(:, p) = zeros(size(X, 1), 1);
-  end
-end
+mu(:) = [mean(X(:,1)) mean(X(:,2))]
+sigma(:) = [std(X(:,1)) std(X(:,2))]
+X_norm(:) = [(X(:,1)-mu(1))/sigma(1) (X(:,2)-mu(2))/sigma(2)]
 
 % ============================================================
 
